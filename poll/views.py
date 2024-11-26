@@ -9,8 +9,13 @@ from rest_framework.generics import (CreateAPIView,
 from rest_framework.response import Response
 from .models import Poll, Vote, Choice
 from .serializers import PollSerializer, VoteSerializer, ChoiceSerializer
+from rest_framework.authentication import (
+    BasicAuthentication,
+    SessionAuthentication,
+    TokenAuthentication,
+)
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 # Create your views here.
-
 
 # class PollApi(ListCreateAPIView):
 #     queryset = Poll.objects.all()
@@ -23,11 +28,14 @@ from .serializers import PollSerializer, VoteSerializer, ChoiceSerializer
 class PollViewSet(viewsets.ModelViewSet):
     queryset = Poll.objects.all()
     serializer_class = PollSerializer
+    #authentication_classes = [TokenAuthentication]
+    #permission_classes = [IsAuthenticatedOrReadOnly, IsAuthenticated]
+
 class ChoiceApi(ListCreateAPIView):
     #queryset = Choice.objects.all()
 
     def get_queryset(self):
-        queryset = Choice.objects.filter(poll_id = self.kwargs["pk"])
+        queryset = Choice.objects.filter(poll_id=self.kwargs["pk"])
         return queryset
     serializer_class = ChoiceSerializer
 
