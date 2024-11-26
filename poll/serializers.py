@@ -18,8 +18,8 @@ class ChoiceSerializer(serializers.ModelSerializer):
 
 class PollSerializer(serializers.ModelSerializer):
     choices = ChoiceSerializer(many=True, read_only=True, required=False)
-    #choices = serializers.StringRelatedField(read_only = True)
-    #created_by = serializers.StringRelatedField(read_only = True)
+    # choices = serializers.StringRelatedField(read_only = True)
+    # created_by = serializers.StringRelatedField(read_only = True)
 
     class Meta:
         model = Poll
