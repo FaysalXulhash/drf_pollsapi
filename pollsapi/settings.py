@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     # third party apps
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_yasg',
+    #'rest_framework_swagger',
 
     # local apps
     'poll.apps.PollConfig',
